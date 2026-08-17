@@ -57,7 +57,7 @@ export const WHITELIST = [
   "Farside ETF Flows",
 ];
 
-const REJECTED = ["Rumeur X / anonyme", "Blog non identifié", "Signal Telegram"];
+const REJECTED: [string, string, string] = ["Rumeur X / anonyme", "Blog non identifié", "Signal Telegram"];
 
 function mulberry(seed: number) {
   return () => {
@@ -261,7 +261,7 @@ export function analyse(pair: PairId, quote: Quote): Analysis {
   if (bear.length > 1) interactions.push(`${bear.map((e) => e.category).join(" + ")} se renforcent côté baissier.`);
   if (bull.length && bear.length)
     interactions.push(
-      `« ${bull[0].title} » est partiellement annulé par « ${bear[0].title} » : conviction réduite.`,
+      `« ${bull[0]!.title} » est partiellement annulé par « ${bear[0]!.title} » : conviction réduite.`,
     );
   if (!interactions.length) interactions.push("Aucune interaction significative détectée.");
 
